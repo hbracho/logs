@@ -1,4 +1,4 @@
-module hbracho/custom-format-logrus
+module github.com/hbracho/custom-format-logrus
 
 go 1.17
 
