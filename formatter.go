@@ -1,4 +1,4 @@
-package main
+package habpformatter
 
 import (
 	"encoding/json"
