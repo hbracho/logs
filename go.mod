@@ -1,4 +1,4 @@
-module github.com/hbracho/logs
+module gitlab.falabella.com/tech-corp/ac/observability/custom-format-logrus
 
 go 1.17
 
