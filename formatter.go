@@ -48,7 +48,7 @@ func (f CustomFormatter) Format(entry *logrus.Entry) ([]byte, error) {
 		"msg":   entry.Message,
 		"level": entry.Level,
 		"time":  toEpochUnixTime(entry.Time), //toTimestamp
-		//"loggerName": f.loggerName,
+		///"loggerName": f.loggerName,
 	}
 
 	// if pc, file, line, ok := runtime.Caller(5); ok {
