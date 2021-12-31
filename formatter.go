@@ -46,10 +46,10 @@ func NewCustomFormatter(loggerName string) *CustomFormatter {
 func (f *CustomFormatter) Format(entry *logrus.Entry) ([]byte, error) {
 
 	gelfEntry := map[string]interface{}{
-		"message":    entry.Message,
-		"level":      entry.Level,
-		"timestamp":  toEpochUnixTime(entry.Time), //toTimestamp
-		"time":       toEpochUnixTimeString(entry.Time),
+		"message": entry.Message,
+		"level":   entry.Level,
+		//"timestamp":  toEpochUnixTime(entry.Time), //toTimestamp
+		"timestamp":  toEpochUnixTimeString(entry.Time),
 		"loggerName": f.loggerName,
 	}
 
