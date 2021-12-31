@@ -24,7 +24,7 @@ func init() {
 	protectedFields = map[string]bool{
 		"loggerName":  true,
 		"message":     true,
-		"timestamp":   true,
+		"timeMillis":  true,
 		"level":       true,
 		"callFuntion": true,
 		"error":       true,
@@ -49,7 +49,7 @@ func (f *CustomFormatter) Format(entry *logrus.Entry) ([]byte, error) {
 		"message": entry.Message,
 		"level":   entry.Level,
 		//"timestamp":  toEpochUnixTime(entry.Time), //toTimestamp
-		"timestamp":  toEpochUnixTimeString(entry.Time),
+		"timeMillis": toEpochUnixTimeString(entry.Time),
 		"loggerName": f.loggerName,
 	}
 
@@ -90,7 +90,9 @@ func toTimestamp(t time.Time) float64 {
 }
 
 func toEpochUnixTimeString(t time.Time) string {
-	timeUnix := t.Unix()
+	//timeUnix := t.Unix()
+	timeUnix := t.UnixNano() / 1000000
+
 	s := strconv.FormatInt(timeUnix, 10)
 
 	return string(s)
