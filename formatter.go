@@ -37,12 +37,12 @@ type CustomFormatter struct {
 	loggerName string
 }
 
-func NewCustomFormatter(loggerName string) CustomFormatter {
-	return CustomFormatter{loggerName: loggerName}
+func NewCustomFormatter(loggerName string) *CustomFormatter {
+	return &CustomFormatter{loggerName: loggerName}
 }
 
 // Format implements logrus formatter
-func (f CustomFormatter) Format(entry *logrus.Entry) ([]byte, error) {
+func (f *CustomFormatter) Format(entry *logrus.Entry) ([]byte, error) {
 
 	gelfEntry := map[string]interface{}{
 		"msg":   entry.Message,
