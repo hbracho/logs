@@ -3,6 +3,7 @@ package habpformatter
 import (
 	"encoding/json"
 	"log/syslog"
+	"strconv"
 	"time"
 
 	"github.com/sirupsen/logrus"
@@ -48,6 +49,7 @@ func (f *CustomFormatter) Format(entry *logrus.Entry) ([]byte, error) {
 		"message":    entry.Message,
 		"level":      entry.Level,
 		"timestamp":  toEpochUnixTime(entry.Time), //toTimestamp
+		"time":       toEpochUnixTimeString(entry.Time),
 		"loggerName": f.loggerName,
 	}
 
@@ -87,9 +89,15 @@ func toTimestamp(t time.Time) float64 {
 	return seconds + nanosecond
 }
 
-func toEpochUnixTime(t time.Time) string {
+func toEpochUnixTimeString(t time.Time) string {
 	timeUnix := t.Unix()
-	return string(timeUnix)
+	s := strconv.FormatInt(timeUnix, 10)
+
+	return string(s)
+}
+
+func toEpochUnixTime(t time.Time) int64 {
+	return t.Unix()
 }
 
 func toSyslogLevel(level logrus.Level) syslog.Priority {
