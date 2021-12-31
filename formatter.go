@@ -48,8 +48,8 @@ func (f *CustomFormatter) Format(entry *logrus.Entry) ([]byte, error) {
 		"message": entry.Message,
 		"level":   entry.Level,
 		//"timestamp":  toEpochUnixTime(entry.Time), //toTimestamp
-		"timeMillis1": toEpochUnixTimeString(entry.Time),
-		"loggerName":  f.loggerName,
+		"timestamp":  toEpochUnixTimeMilliseconds(entry.Time),
+		"loggerName": f.loggerName,
 	}
 
 	// if pc, file, line, ok := runtime.Caller(5); ok {
@@ -88,17 +88,10 @@ func toTimestamp(t time.Time) float64 {
 	return seconds + nanosecond
 }
 
-func toEpochUnixTimeString(t time.Time) int64 {
-	//timeUnix := t.Unix()
+func toEpochUnixTimeMilliseconds(t time.Time) int64 {
+	t = t.AddDate(0, 0, -1)
 	timeUnix := t.UnixNano() / 1000000
-
-	//s := strconv.FormatInt(timeUnix, 10)
-
 	return timeUnix
-}
-
-func toEpochUnixTime(t time.Time) int64 {
-	return t.Unix()
 }
 
 func toSyslogLevel(level logrus.Level) syslog.Priority {
