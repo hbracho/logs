@@ -90,7 +90,7 @@ func toTimestamp(t time.Time) float64 {
 }
 
 func toEpochUnixTimeMilliseconds(t time.Time) int64 {
-	t = t.AddDate(0, 0, -1)
+	//t = t.AddDate(0, 0, -1)
 	timeUnix := t.UnixNano() / 1000000
 	return timeUnix
 }
