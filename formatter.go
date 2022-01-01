@@ -49,7 +49,7 @@ func (f *CustomFormatter) Format(entry *logrus.Entry) ([]byte, error) {
 		"message": entry.Message,
 		"level":   entry.Level,
 		//"timestamp":  toEpochUnixTime(entry.Time), //toTimestamp
-		"timestamp":  toEpochUnixTimeMillisecondsString(entry.Time),
+		"timeMillis": toEpochUnixTimeMilliseconds(entry.Time),
 		"loggerName": f.loggerName,
 	}
 
